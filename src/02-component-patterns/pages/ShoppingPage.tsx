@@ -19,7 +19,6 @@ export const ShoppingPage = () => {
       <hr />
 
       <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-        <ProductImage />
         <ProductCard product={product}>
           <ProductTitle />
           <ProductButtons />
