@@ -19,9 +19,9 @@ export const ShoppingPage = () => {
       <hr />
 
       <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-        <ProductImage />
         <ProductCard product={product}>
           <ProductTitle />
+          <ProductImage />
           <ProductButtons />
         </ProductCard>
         <ProductCard product={product}>
