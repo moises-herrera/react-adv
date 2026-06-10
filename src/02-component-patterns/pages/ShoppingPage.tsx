@@ -5,6 +5,7 @@ import {
   ProductButtons,
 } from '../components';
 import { Product } from '../interfaces/product.interface';
+import '../styles/custom-styles.css';
 
 const product: Product = {
   id: '1',
@@ -19,15 +20,32 @@ export const ShoppingPage = () => {
       <hr />
 
       <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-        <ProductCard product={product}>
-          <ProductTitle />
-          <ProductImage />
-          <ProductButtons />
+        <ProductCard product={product} className="bg-dark text-white">
+          <ProductCard.Image className="custom-image" />
+          <ProductCard.Title className="text-bold" />
+          <ProductCard.Buttons className="custom-buttons" />
         </ProductCard>
-        <ProductCard product={product}>
-          <ProductCard.Image />
-          <ProductCard.Title />
-          <ProductCard.Buttons />
+
+        <ProductCard product={product} className="bg-dark text-white">
+          <ProductImage
+            className="custom-image"
+            style={{ boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.2)' }}
+          />
+          <ProductTitle className="text-bold" />
+          <ProductButtons className="custom-buttons" />
+        </ProductCard>
+
+        <ProductCard product={product} style={{ backgroundColor: '#70D1F8' }}>
+          <ProductImage
+            style={{ boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.2)' }}
+          />
+          <ProductTitle style={{ fontWeight: 'bold' }} />
+          <ProductButtons
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          />
         </ProductCard>
       </div>
     </div>

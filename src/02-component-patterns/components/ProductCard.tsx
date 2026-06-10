@@ -1,15 +1,30 @@
+import { CSSProperties, ReactElement } from 'react';
 import { useProduct } from '../hooks/useProduct';
 import { ProductContext } from '../contexts/ProductContext';
-import { ProductCardProps } from '../interfaces/product-card-props.interface';
+import { Product } from '../interfaces/product.interface';
 
 import styles from '../styles/styles.module.css';
 
-export const ProductCard = ({ product, children }: ProductCardProps) => {
+export interface ProductCardProps {
+  product: Product;
+  children?: ReactElement | ReactElement[];
+  className?: string;
+  style?: CSSProperties;
+}
+
+export const ProductCard = ({
+  product,
+  children,
+  className = '',
+  style,
+}: ProductCardProps) => {
   const { counter, increaseBy } = useProduct();
 
   return (
     <ProductContext.Provider value={{ product, counter, increaseBy }}>
-      <div className={styles.productCard}>{children}</div>
+      <div className={`${styles.productCard} ${className}`} style={style}>
+        {children}
+      </div>
     </ProductContext.Provider>
   );
 };
