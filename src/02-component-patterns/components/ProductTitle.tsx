@@ -16,8 +16,8 @@ export const ProductTitle: FC<ProductTitleProps> = ({
   const { product } = useProductContext();
 
   return (
-    <span className={`${styles.productDescription} ${className}`} style={style}>
+    <p className={`${styles.productDescription} ${className}`} style={style}>
       {title || product.title}
-    </span>
+    </p>
   );
 };

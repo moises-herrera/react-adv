@@ -11,14 +11,14 @@ export const ProductButtons: FC<ProductButtonsProps> = ({
   className = '',
   style,
 }) => {
-  const { counter, increaseBy } = useProductContext();
+  const { quantity, increaseBy } = useProductContext();
 
   return (
     <div className={`${styles.buttonsContainer} ${className}`} style={style}>
       <button className={styles.buttonMinus} onClick={() => increaseBy(-1)}>
         -
       </button>
-      <div className={styles.countLabel}>{counter}</div>
+      <div className={styles.countLabel}>{quantity}</div>
       <button className={styles.buttonAdd} onClick={() => increaseBy(1)}>
         +
       </button>

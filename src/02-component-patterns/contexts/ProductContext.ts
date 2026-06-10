@@ -3,7 +3,7 @@ import { Product } from '../interfaces/product.interface';
 
 interface ProductContextProps {
   product: Product;
-  counter: number;
+  quantity: number;
   increaseBy: (value: number) => void;
 }
 

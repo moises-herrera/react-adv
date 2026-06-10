@@ -1,5 +1,4 @@
 import { CSSProperties, ReactElement } from 'react';
-import { useProduct } from '../hooks/useProduct';
 import { ProductContext } from '../contexts/ProductContext';
 import { Product } from '../interfaces/product.interface';
 
@@ -10,6 +9,8 @@ export interface ProductCardProps {
   children?: ReactElement | ReactElement[];
   className?: string;
   style?: CSSProperties;
+  quantity?: number;
+  onChangeQuantity: (quantityToAdd: number) => void;
 }
 
 export const ProductCard = ({
@@ -17,11 +18,13 @@ export const ProductCard = ({
   children,
   className = '',
   style,
+  quantity = 0,
+  onChangeQuantity,
 }: ProductCardProps) => {
-  const { counter, increaseBy } = useProduct();
-
   return (
-    <ProductContext.Provider value={{ product, counter, increaseBy }}>
+    <ProductContext.Provider
+      value={{ product, quantity, increaseBy: onChangeQuantity }}
+    >
       <div className={`${styles.productCard} ${className}`} style={style}>
         {children}
       </div>
