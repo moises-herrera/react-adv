@@ -4,6 +4,7 @@ import { Product } from '../interfaces/product.interface';
 interface ProductContextProps {
   product: Product;
   quantity: number;
+  maxQuantity?: number;
   increaseBy: (value: number) => void;
 }
 

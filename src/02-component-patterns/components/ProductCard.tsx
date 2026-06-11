@@ -1,16 +1,18 @@
-import { CSSProperties, ReactElement } from 'react';
+import { CSSProperties, JSX } from 'react';
 import { ProductContext } from '../contexts/ProductContext';
+import { useProduct } from '../hooks/useProduct';
 import { Product } from '../interfaces/product.interface';
+import { ProductInitialValues } from '../interfaces/product-initial-values.interface';
+import { ProductCardHandler } from '../interfaces/product-card-handler.interface';
 
 import styles from '../styles/styles.module.css';
 
 export interface ProductCardProps {
   product: Product;
-  children?: ReactElement | ReactElement[];
+  children: (args: ProductCardHandler) => JSX.Element;
   className?: string;
   style?: CSSProperties;
-  quantity?: number;
-  onChangeQuantity: (quantityToAdd: number) => void;
+  initialValues?: Partial<ProductInitialValues>;
 }
 
 export const ProductCard = ({
@@ -18,15 +20,30 @@ export const ProductCard = ({
   children,
   className = '',
   style,
-  quantity = 0,
-  onChangeQuantity,
+  initialValues,
 }: ProductCardProps) => {
+  const { counter, isMaxQuantityReached, increaseBy, reset } = useProduct({
+    initialValues,
+  });
+
   return (
     <ProductContext.Provider
-      value={{ product, quantity, increaseBy: onChangeQuantity }}
+      value={{
+        product,
+        quantity: counter,
+        maxQuantity: initialValues?.maxQuantity,
+        increaseBy,
+      }}
     >
       <div className={`${styles.productCard} ${className}`} style={style}>
-        {children}
+        {children({
+          product,
+          quantity: counter,
+          isMaxQuantityReached,
+          maxQuantity: initialValues?.maxQuantity,
+          increaseBy,
+          reset,
+        })}
       </div>
     </ProductContext.Provider>
   );

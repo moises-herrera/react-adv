@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from 'react';
+import { CSSProperties, FC, useMemo } from 'react';
 import { useProductContext } from '../hooks/useProductContext';
 import styles from '../styles/styles.module.css';
 
@@ -11,7 +11,11 @@ export const ProductButtons: FC<ProductButtonsProps> = ({
   className = '',
   style,
 }) => {
-  const { quantity, increaseBy } = useProductContext();
+  const { quantity, maxQuantity, increaseBy } = useProductContext();
+  const isMaxQuantityReached = useMemo(
+    () => Boolean(maxQuantity) && quantity === maxQuantity,
+    [quantity, maxQuantity]
+  );
 
   return (
     <div className={`${styles.buttonsContainer} ${className}`} style={style}>
@@ -19,7 +23,11 @@ export const ProductButtons: FC<ProductButtonsProps> = ({
         -
       </button>
       <div className={styles.countLabel}>{quantity}</div>
-      <button className={styles.buttonAdd} onClick={() => increaseBy(1)}>
+      <button
+        className={`${styles.buttonAdd} ${isMaxQuantityReached ? styles.disabled : ''}`}
+        disabled={isMaxQuantityReached}
+        onClick={() => increaseBy(1)}
+      >
         +
       </button>
     </div>
