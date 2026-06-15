@@ -1,0 +1,84 @@
+[
+  {
+    "fieldType": "input",
+    "type": "text",
+    "name": "firstName",
+    "placeholder": "First Name",
+    "label": "First Name",
+    "value": "",
+    "validations": [
+      {
+        "type": "required",
+        "message": "First Name is required"
+      },
+      {
+        "type": "minLength",
+        "value": 2,
+        "message": "First Name must be at least 2 characters long"
+      }
+    ]
+  },
+  {
+    "fieldType": "input",
+    "type": "text",
+    "name": "lastName",
+    "placeholder": "Last Name",
+    "label": "Last Name",
+    "value": "",
+    "validations": [
+      {
+        "type": "required",
+        "message": "Last Name is required"
+      }
+    ]
+  },
+  {
+    "fieldType": "input",
+    "type": "email",
+    "name": "email",
+    "placeholder": "worker@company.com",
+    "label": "Email",
+    "value": "",
+    "validations": [
+      {
+        "type": "required",
+        "message": "Email is required"
+      },
+      {
+        "type": "pattern",
+        "value": "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,7}$",
+        "message": "Please enter a valid email address"
+      }
+    ]
+  },
+  {
+    "fieldType": "select",
+    "name": "favoriteGame",
+    "label": "Favorite Game",
+    "value": "",
+    "options": [
+      {
+        "label": "The Legend of Zelda: Breath of the Wild",
+        "value": "zelda"
+      },
+      {
+        "label": "Super Mario Odyssey",
+        "value": "mario"
+      },
+      {
+        "label": "Animal Crossing: New Horizons",
+        "value": "animal-crossing"
+      },
+      {
+        "label": "Hades",
+        "value": "hades"
+      }
+    ],
+    "validations": [
+      {
+        "type": "required",
+        "message": "Favorite Game is required"
+      }
+    ]
+  }
+]
